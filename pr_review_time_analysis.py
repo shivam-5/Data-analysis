@@ -28,8 +28,9 @@ if __name__ == "__main__":
     last_n_merged_requests = []     # This will store the retrieved merged pull requests
 
     # Optional header to provide auth token to prevent exceeding GIT request limit
+    # Add this as argument to each request if required
     headers = {
-        'Authorization': 'token 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',
+        'Authorization': 'token <OAuthToken>',
     }
 
     # Keep searching in pages until we've retrieved N merged pull requests or no further data exist
@@ -40,7 +41,7 @@ if __name__ == "__main__":
         params = {'state': 'closed', 'per_page': '100', 'page': page_no, 'accept': 'application/vnd.github.v3+json'}
 
         url = 'https://api.github.com/repos/' + org_repo + '/pulls'
-        response = requests.get(url, params=params, headers=headers)
+        response = requests.get(url, params=params)
         print(response)
         if response.status_code == 200:
             closed_pull_requests = response.json()
@@ -69,7 +70,7 @@ if __name__ == "__main__":
 
         # Retrieve only first review of this request
         params = {'per_page': '1', 'page': '1', 'accept': 'application/vnd.github.v3+json'}
-        response = requests.get(url, params=params, headers=headers)
+        response = requests.get(url, params=params)
         if response.status_code == 200:
             review_request = response.json()
             first_review_time = review_request[0]['submitted_at']
