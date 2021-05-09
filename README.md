@@ -1,4 +1,4 @@
-# Time analysis for first approved review of merged pull requests
+# Time analysis for first approved review of last N merged pull requests
 File: pr_review_time_analysis.py
 
 Purpose of this script is to extract last N merged from the organization and repo and find out the first approved reviewer for each of that request.
@@ -12,4 +12,5 @@ Run the script in command prompt with following command: python pr_review_time_a
 First argument nodejs/node specifies the organization and repository to retrieve the request from.
 Second argument 10 specifies the number of requests to analyze the data from.
 
-Note: It would be better if either both arguments are specified or none.
+Note: It would be better if either both arguments are specified or none. 
+Documentation is provided inline in code
